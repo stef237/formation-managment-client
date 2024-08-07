@@ -1,0 +1,113 @@
+<div class="dashboard-container">
+
+<div class="dashboard" style="margin-top: 20px;">
+  <div class="card">
+    <h2>Total Certificats</h2>
+    <p>{{ certificats.length }}</p>
+  </div>
+
+  <div class="card">
+    <h2>Total Formations</h2>
+    <p>{{ formations.length }}</p>
+  </div>
+
+  <div class="card">
+    <h2>Total Seances</h2>
+    <p>{{ seances.length }}</p>
+  </div>
+
+  <div class="card">
+    <h2>Total Formateurs</h2>
+    <p>{{ teachers.length }}</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Total Permissions</h2>
+    <p>{{ permits.length }}</p>
+  </div>
+
+  <div class="card">
+    <h2>Total Adhérents</h2>
+    <p>{{ students.length }}</p>
+  </div>
+</div>
+
+
+
+
+<div class="table-container">
+  <h2 style="text-align: center">Certificats</h2>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Date d'obtention</th>
+      <th>Date de fin</th>
+    </tr>
+    <tr *ngFor="let certificat of certificats">
+      <td>{{ certificat.id }}</td>
+      <td>{{ certificat.name }}</td>
+      <td>{{ certificat.obtenu }}</td>
+      <td>{{ certificat.validite }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="table-container">
+  <h2 style="text-align: center">Formations</h2>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Titre</th>
+      <th>Domaine</th>
+      <th>Durée</th>
+    </tr>
+    <tr *ngFor="let formation of formations">
+      <td>{{ formation.id }}</td>
+      <td>{{ formation.name }}</td>
+      <td>{{ formation.domaine }}</td>
+      <td>{{ formation.duree }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="table-container">
+  <h2 style="text-align: center">Formateurs</h2>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Qualification</th>
+      <th>Département</th>
+    </tr>
+    <tr *ngFor="let teacher of teachers">
+      <td>{{ teacher.id }}</td>
+      <td>{{ teacher.name }}</td>
+      <td>{{ teacher.qualification }}</td>
+      <td>{{ teacher.department }}</td>
+
+    </tr>
+  </table>
+</div>
+
+<div class="table-container">
+  <h2 style="text-align: center">Seances</h2>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Titre</th>
+      <th>date de debut</th>
+      <th>date de fin</th>
+    </tr>
+    <tr *ngFor="let seance of seances">
+      <td>{{ seance.id }}</td>
+      <td>{{ seance.name }}</td>
+      <td>{{ seance.obtenu }}</td>
+      <td>{{ seance.validite }}</td>
+    </tr>
+  </table>
+</div>
+
+
+</div>

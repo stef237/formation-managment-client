@@ -1,0 +1,59 @@
+
+<div class="bg" style="margin-top: 150px;">
+  <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+  <div class="parent">
+    <div class="child">
+      <h1 class="form-title">Modifier une Seance</h1>
+      <form class="login-form" [formGroup]="validateForm">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Titre</mat-label>
+          <input matInput type="text" placeholder="Entrer le titre" formControlName="name"/>
+          <mat-error *ngIf="validateForm.get('name')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>description</mat-label>
+          <textarea matInput placeholder="description" formControlName="description"></textarea>
+          <mat-error *ngIf="validateForm.get('description')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <!-- The @angular-material-components/datetime-picker -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Début : </mat-label>
+          <input
+            matInput
+            [ngxMatDatetimePicker]="picker"
+            formControlName="obtenu"
+            [min]="today"
+          />
+          <ngx-mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></ngx-mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          <mat-error *ngIf="validateForm.get('obtenu')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('obtenu')?.hasError('matDatepickerMin')">La date ne peut pas être dans le passé.</mat-error>
+        </mat-form-field>
+
+        <!-- Second DateTimePicker for "Fin" -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Validité : </mat-label>
+          <input
+            matInput
+            [ngxMatDatetimePicker]="endPicker"
+            formControlName="validite"
+            [min]="today"
+          />
+          <ngx-mat-datepicker-toggle matIconSuffix [for]="endPicker"></ngx-mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #endPicker></ngx-mat-datetime-picker>
+          <mat-error *ngIf="validateForm.get('validite')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('validite')?.hasError('matDatepickerMin')">La date de fin doit être après la date de début.</mat-error>
+        </mat-form-field>
+
+        -->
+        <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (click)="updateSeance()">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>

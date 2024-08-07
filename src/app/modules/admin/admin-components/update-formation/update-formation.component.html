@@ -1,0 +1,101 @@
+
+<div class="bg" style="margin-top: 200px;">
+  <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+  <div class="parent">
+    <div class="child">
+      <h1 class="form-title">Modifier une Formation</h1>
+      <form class="login-form" [formGroup]="validateForm">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Titre</mat-label>
+          <input matInput type="text" placeholder="Entrer le titre" formControlName="name"/>
+          <mat-error *ngIf="validateForm.get('name')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label id="domaine">Domaine</mat-label>
+          <mat-select formControlName="domaine" placeholder="Select a day" >
+            <mat-option *ngFor="let domaine of DOMAINE" [value]="domaine">{{domaine}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="validateForm.get('domaine')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>description</mat-label>
+          <textarea matInput placeholder="description" formControlName="description"></textarea>
+          <mat-error *ngIf="validateForm.get('description')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Thème </mat-label>
+          <input matInput type="text" placeholder="Entrer le theme" formControlName="theme"/>
+          <mat-error *ngIf="validateForm.get('theme')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Code formation</mat-label>
+          <input matInput type="text" placeholder="Entrer le Code formation" formControlName="code"/>
+          <mat-error *ngIf="validateForm.get('code')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Début</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choisir la date" formControlName="obtenu" [min]="today">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="validateForm.get('obtenu')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('obtenu')?.hasError('matDatepickerMin')">La date ne peut pas être passée.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Date de fin</mat-label>
+          <input matInput [matDatepicker]="dp" placeholder="Choisir la date" formControlName="validite" [min]="validateForm.get('obtenu')?.value || today">
+          <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+          <mat-error *ngIf="validateForm.get('validite')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('validite')?.hasError('matDatepickerMin')">La date de fin doit être après la date de début.</mat-error>
+        </mat-form-field>
+        <div *ngIf="duree !== null">
+
+          <p>Nombre de jours: {{ duree }}.Jours</p>
+
+        </div>
+
+
+
+
+        <mat-form-field class="columns">
+          <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+          <ng-template #newFile>
+            <mat-label>Choisir le fichier</mat-label>
+          </ng-template>
+          <input matInput disabled>
+          <button mat-icon-button matSuffix (click)="fileInput.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input
+            hidden
+            (change)="selectFile($event)"
+            #fileInput
+            type="file"
+            id="file"
+            formControlName="file"
+            accept=".pdf"
+          >
+        </mat-form-field>
+
+
+        <mat-form-field floatLabel="always">
+          <mat-label>Prix</mat-label>
+          <mat-error *ngIf="validateForm.get('prix')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <input matInput formControlName="prix" type="number" class="example-right-align" placeholder="0" />
+
+          <span matTextSuffix>.DT</span>
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (click)="updateFormation()">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+

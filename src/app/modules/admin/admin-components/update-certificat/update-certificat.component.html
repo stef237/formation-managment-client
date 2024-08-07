@@ -1,0 +1,41 @@
+<div class="bg" style="margin-top: 150px;">
+  <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+  <div class="parent">
+    <div class="child">
+      <h1 class="form-title">Modifier un Certificat</h1>
+      <form class="login-form" [formGroup]="validateForm">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" placeholder="Entrer le nom" formControlName="name"/>
+          <mat-error *ngIf="validateForm.get('name')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Obtenu le</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choisir la date" formControlName="obtenu" [min]="today">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="validateForm.get('obtenu')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('obtenu')?.hasError('matDatepickerMin')">La date ne peut pas être passée.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Validité</mat-label>
+          <input matInput [matDatepicker]="dp" placeholder="Choisir la date" formControlName="validite" [min]="validateForm.get('obtenu')?.value || today">
+          <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+          <mat-error *ngIf="validateForm.get('validite')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('validite')?.hasError('matDatepickerMin')">La date de fin doit être après la date de début.</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>description</mat-label>
+          <textarea matInput placeholder="description" formControlName="description"></textarea>
+          <mat-error *ngIf="validateForm.get('description')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (click)="updateCertificat()" >Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>

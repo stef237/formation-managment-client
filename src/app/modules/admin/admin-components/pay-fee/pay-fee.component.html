@@ -1,0 +1,40 @@
+<div class="bg">
+  <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+  <div class="parent">
+    <div class="child">
+      <h1 class="form-title">Payment Formation</h1>
+      <form [formGroup]="validateForm" class="login-form">
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Montant</mat-label>
+          <input matInput type="number" placeholder="Montant" formControlName="amount" />
+          <mat-error *ngIf="validateForm.get('amount')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Mois</mat-label>
+          <mat-select formControlName="month" placeholder="Selectionne le Mois">
+            <mat-option *ngFor="let month of MONTH" [value]="month">{{ month }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="validateForm.get('month')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Payé par </mat-label>
+          <input matInput type="text" placeholder="payé par" formControlName="givenBy" />
+          <mat-error *ngIf="validateForm.get('givenBy')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+          <mat-error *ngIf="validateForm.get('description')?.hasError('required')">Cette entrée est obligatoire!</mat-error>
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" [disabled]="validateForm.invalid"
+                (click)="payFee()">Payer</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+#footer {
+
+  background-color: #5bbbff;
+  background-image: url('/assets/images/csaba.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: #fff;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#footerMain {
+  height: 95px;
+  padding-top: 20px ;
+  margin: 0;
+  text-align: center;
+  background-color: #1482c0;
+  color: #fff;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#footerMain p {
+  opacity: 0.5;
+}
+
+.logobanner img {
+  height: auto;
+  width: 20%;
+
+}
+
+#bottomLogo {
+  letter-spacing: -2px !important;
+  font-size: 40px !important;
+}

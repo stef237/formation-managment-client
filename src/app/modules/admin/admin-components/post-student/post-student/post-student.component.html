@@ -1,0 +1,71 @@
+
+<div class="bg" style="margin-top: 300px;">
+  <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+  <div class="parent">
+    <div class="child">
+      <h1 class="form-title">Ajouter un Adhérant</h1>
+      <form class="login-form" [formGroup]="validateForm">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Entrer l'email" formControlName="email"/>
+          <mat-error *ngIf="validateForm.get('email')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('email')?.hasError('email')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Mot de Passe</mat-label>
+          <input matInput type="password" placeholder="Entrer le mot de passe" formControlName="password"/>
+          <mat-error *ngIf="validateForm.get('password')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Confirmer le mot de passe</mat-label>
+          <input matInput type="password" placeholder="Entrer le mot de passe" formControlName="checkPassword"/>
+          <mat-error *ngIf="validateForm.get('checkPassword')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="validateForm.get('checkPassword')?.hasError('confirm')">Votre mot de passe ne correspond pas</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" placeholder="Name" formControlName="name"/>
+          <mat-error *ngIf="validateForm.get('name')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label >Niveau</mat-label>
+          <mat-select formControlName="studentClass" placeholder="Selectionner votre niveau">
+            <mat-option *ngFor="let class of CLASS" [value]="class">{{class}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="validateForm.get('studentClass')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label> Date de Naiss</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="birthDate"/>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="validateForm.get('birthDate')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Addresse</mat-label>
+          <textarea matInput placeholder="Address" formControlName="addresse"></textarea>
+          <mat-error *ngIf="validateForm.get('address')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label >Genre</mat-label>
+          <mat-select formControlName="gender" placeholder="Selectionner votre genre">
+            <mat-option *ngFor="let gender of GENDER" [value]="gender">{{gender}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="validateForm.get('gender')?.hasError('required')">Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="validateForm.invalid" (click)="postStudent()">Enregistrer</button>
+
+
+      </form>
+    </div>
+  </div>
+</div>

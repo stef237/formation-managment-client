@@ -1,0 +1,46 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh; /* Assurez-vous que le conteneur occupe toute la hauteur de la vue */
+}
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center; /* Centrer les cartes horizontalement */
+}
+
+.card {
+  flex: 1 1 calc(33.333% - 1rem);
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: .25rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.table-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto; /* Centrer horizontalement */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+th, td {
+  border: 1px solid #dee2e6;
+  padding: .5rem;
+  text-align: left;
+}
+
+th {
+  background-color: #e9ecef;
+}

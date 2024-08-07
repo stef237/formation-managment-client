@@ -1,0 +1,49 @@
+<div *ngIf="!isAdminLoggedIn && !isStudentLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+        <span class="navbar-brand">Formation Management</span>
+        <span class="spacer"></span>
+        <button mat-button routerLink="/login" routerLinkActive="active">Connexion</button>
+    </mat-toolbar>
+</div>
+
+
+
+<div *ngIf="isAdminLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+        <span class="navbar-brand">Admin DASHBOARD</span>
+        <span class="spacer"></span>
+        <button mat-button routerLink="" routerLinkActive="active">Home</button>
+      <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">DASHBOARD</button>
+      <button mat-button routerLink="/admin/students" routerLinkActive="active">Liste utilisateur</button>
+      <button mat-button routerLink="/admin/formations" routerLinkActive="active">Liste de Formations</button>
+      <button mat-button routerLink="/admin/seances" routerLinkActive="active">Planing</button>
+      <button mat-button routerLink="/admin/teachers" routerLinkActive="active">Liste de formateur</button>
+      <button mat-button routerLink="/admin/certificats" routerLinkActive="active">Certificats</button>
+      <button mat-button routerLink="/admin/permits" routerLinkActive="active">Permissions</button>
+
+
+      <button mat-button (click)="logout()" routerLinkActive="active">Déconnexion</button>
+    </mat-toolbar>
+</div>
+
+
+<div *ngIf="isStudentLoggedIn">
+    <mat-toolbar color="primary" class="navbar">
+        <span class="navbar-brand">Adhérent DASHBOARD</span>
+        <span class="spacer"></span>
+      <button mat-button routerLink="" routerLinkActive="active">Home</button>
+      <button mat-button routerLink="/student/dashboard" routerLinkActive="active">Profil</button>
+      <button mat-button routerLink="/student/formations" routerLinkActive="active">Formations</button>
+      <button mat-button routerLink="/student/seances" routerLinkActive="active">SEANCES</button>
+      <button mat-button routerLink="/student/:formationId/formation" routerLinkActive="active">Mes Formations</button>
+      <button mat-button routerLink="/student/:formationId/formation" routerLinkActive="active">Mes Seances</button>
+      <button mat-button routerLink="/student/:formationId/formation" routerLinkActive="active">Mes Certificat</button>
+
+      <button mat-button routerLink="/student/permit" routerLinkActive="active">Permissions</button>
+        <button mat-button routerLink="/student/permits" routerLinkActive="active">Mes Permissions</button>
+        <button mat-button (click)="logout()" routerLinkActive="active">Déconnexion</button>
+    </mat-toolbar>
+</div>
+
+
+<router-outlet></router-outlet>

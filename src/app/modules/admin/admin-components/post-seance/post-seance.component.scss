@@ -1,0 +1,83 @@
+.parent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.child{
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-title{
+  margin-left: 130px;
+
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field{
+  width: 100%;
+}
+
+button{
+  width: 100%;
+}
+
+@media(max-width:768px){
+  .parent{
+    padding: 0 10px;
+  }
+
+  .child{
+    max-width: 100%;
+  }
+}
+
+/* Customization for the @angular-material-components/datetime-picker */
+::ng-deep .mat-calendar-period-button .mdc-button__label   {
+  color:white !important;
+
+}
+.datetimePicker,
+::ng-deep .mat-calendar {
+  color:white !important;
+  background-color: rgb(49, 30, 112);
+}
+
+::ng-deep  .mat-calendar-body-cell-content {
+  color:rgb(99, 209, 211);
+}
+
+datetimePicker,
+::ng-deep  .time-container-clock {
+  color:white !important;
+  background-color: rgb(59, 34, 122);
+}
+datetimePicker,
+::ng-deep .time-container  {
+  color:white !important;
+  background-color: rgb(45, 29, 100);
+}
+datetimePicker,
+::ng-deep .time-container-body-cell-content {
+  color:white;
+}
+datetimePicker,
+::ng-deep .time-container .mat-mdc-input-element {
+  color:white !important;
+  background-color: rgb(65, 45, 129);
+}
+.datetimepicker
+{
+  background-color: #28695a !important;
+  --mtx-datetimepicker-toggle-icon-color: blue();
+}
+
+
+
+
